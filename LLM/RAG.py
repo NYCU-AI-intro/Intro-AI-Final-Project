@@ -19,7 +19,7 @@ class Agent:
         print('load doc')
         start = time()
         load_dotenv() # load OPENAI_API_KEY
-        loader = DirectoryLoader('./exdatabase', glob='*.txt') # load all the .txt in 
+        loader = DirectoryLoader('./database', glob='*.txt') # load all the .txt in 
         documents = loader.load() # type: list{Document}
         end = time()
         print('time: ', end - start)
