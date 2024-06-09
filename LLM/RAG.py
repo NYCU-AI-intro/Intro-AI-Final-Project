@@ -19,7 +19,7 @@ class Agent:
         print('load doc')
         start = time()
         load_dotenv() # load OPENAI_API_KEY
-        loader = DirectoryLoader('./database', glob='*.txt') # load all the .txt in 
+        loader = DirectoryLoader('LLM/database', glob='*.txt') # load all the .txt in 
         documents = loader.load() # type: list{Document}
         end = time()
         print('time: ', end - start)
@@ -39,7 +39,7 @@ class Agent:
         # store vector in Chroma vector database
         self.db = Chroma.from_documents(splited_docs, embeddings) # type: db
         print('build agent')
-        self.qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(model_name='gpt-3.5-turbo'), chain_type="map_reduce", retriever=self.db.as_retriever(), return_source_documents=True)
+        self.qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(model_name='gpt-3.5-turbo'), chain_type="map_rerank", retriever=self.db.as_retriever(), return_source_documents=True)
         end = time()
         print('time: ', end - start)
         print('init end')
@@ -70,7 +70,7 @@ class Agent:
         print('question optimization')
         start = time()
         question_template = ''
-        with open('./prompt_engineering/question_template.txt', 'r', encoding='utf-8') as f:
+        with open('LLM/prompt_engineering/question_template.txt', 'r', encoding='utf-8') as f:
             question_template = f.read()
         format_question = question_template + prompt + '\n'
         end = time()
@@ -85,9 +85,9 @@ class Agent:
         print('Few-shot prompt')
         start = time()
         example_output = ''
-        with open('./prompt_engineering/few_shot_prompting.txt', 'r', encoding='utf-8') as f:
+        with open('LLM/prompt_engineering/few_shot_prompting.txt', 'r', encoding='utf-8') as f:
             example_output = f.read()
-        few_shot_prompt = 'This is an example output. **Output refer to the example.**\n' + \
+        few_shot_prompt = 'This is an example output. **Output refer to the example.**, Please confirm the link is associated to the paper\n' + \
                             'example output: \n' + \
                             f'{example_output}\n' 
         end = time()
@@ -101,11 +101,12 @@ class Agent:
         print('query with db')
         start = time()
         result = self.qa({"query": query})
+        print(result)
         end = time()
         print('time: ', end - start)
 
         print('judge')
-        if "I don't" in result['result'] or "I do not" in result['result']:
+        if "I don't" in result['result'] or "I do not" in result['result'] or "I cannot" in result['result'] or "I can not" in result['result'] or "I can't" in result['result']:
             result = self.ask_without_db(query)
         else: 
             result = result['result']
@@ -113,7 +114,7 @@ class Agent:
         print('translate...')
         start = time()
         chinese_example_output = ''
-        with open('./prompt_engineering/few_shot_prompting_chinese.txt', 'r', encoding='utf-8') as f:
+        with open('LLM/prompt_engineering/few_shot_prompting_chinese.txt', 'r', encoding='utf-8') as f:
             chinese_example_output = f.read()
         chinese_few_shot_prompt = '這裡有一份範例輸出，**請根據範例進行翻譯**\n' + \
                             '範例輸出: \n' + \

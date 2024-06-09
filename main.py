@@ -1,6 +1,12 @@
 import discord
 from discord.ext import commands
 import asyncio, os, keep_alive
+from dotenv import load_dotenv
+import logging
+
+load_dotenv()
+logging.getLogger().setLevel(logging.ERROR)
+
 
 my_secret = os.environ['bot_token']
 

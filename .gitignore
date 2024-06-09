@@ -1,3 +1,5 @@
 .env
+LLM/.env
 LLM/database
-DC_Bot/other
+other
+__pycache__

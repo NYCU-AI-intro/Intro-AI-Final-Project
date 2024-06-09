@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from LLM.RAG import Agent
 
 #from translate_button import etoc_Button
 
@@ -40,6 +41,7 @@ class Output(Cog_Extension):
   def __init__(self, bot):
     super().__init__(bot)
     print('init')
+    self.LLMAgent = Agent()
   
 
   @commands.command()
@@ -47,9 +49,8 @@ class Output(Cog_Extension):
 
     #Eng_output, Che_output = "abc", "你好"  #侑哲函式回傳
 
-  
-    Eng_output = "cfd"
-    Che_output = "你好"
+    
+    Eng_output, Che_output = self.LLMAgent.ask_question(msg)
 
     judge = "etoc"
 
@@ -58,9 +59,7 @@ class Output(Cog_Extension):
 
     await ctx.send(view = view, content = Eng_output)
 
-    await ctx.send(f"{Eng_output}\n\n")
-
-    await ctx.send(f"{Che_output}\n\n")
+    
 
   '''@commands.command()
   async def btest(self, ctx):
