@@ -1,0 +1,18 @@
+Name
+A Survey of Route Recommendations: Methods, Applications, and Opportunities
+
+Abstract
+Nowadays, with advanced information technologies deployed citywide, large data volumes and powerful computa-
+tional resources are intelligentizing modern city development. As an important part of intelligent transportation, route
+recommendation and its applications are widely used, directly influencing citizens’ travel habits. Developing smart
+and efficient travel routes based on big data (possibly multi-modal) has become a central challenge in route recommen-
+dation research. Our survey offers a comprehensive review of route recommendation work based on urban computing.
+It is organized by the following three parts: 1) Methodology-wise. We categorize a large volume of classic methods
+and modern deep learning methods. Also, we discuss their historical relations and reveal the edge-cutting progress.
+2) Application-wise. We present numerous novel applications related to route commendation within urban computing
+scenarios. 3) We discuss current problems and challenges and envision several promising research directions. We
+believe that this survey can help relevant researchers quickly familiarize themselves with the current state of route
+recommendation research and then direct them to future research trends.
+
+Link:
+https://arxiv.org/abs/2403.00284
