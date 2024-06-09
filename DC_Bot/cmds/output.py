@@ -37,8 +37,13 @@ class Translate_Button(discord.ui.View):
     
 class Output(Cog_Extension):
 
+  def __init__(self, bot):
+    super().__init__(bot)
+    print('init')
+  
+
   @commands.command()
-  async def output(self, ctx):
+  async def output(self, ctx, *, msg):
 
     #Eng_output, Che_output = "abc", "你好"  #侑哲函式回傳
 
