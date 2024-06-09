@@ -17,6 +17,7 @@ class Translate_Button(discord.ui.View):
     self.Che_txt = Che_txt
     self.judge = judge
 
+
   @discord.ui.button(label="Translate", style = discord.ButtonStyle.success, custom_id = "Translate_button")
 
   async def buttonEvent(self, interaction, button):
@@ -30,7 +31,7 @@ class Translate_Button(discord.ui.View):
       self.judge = 'etoc'
 
 
-    '''
+    '''按鈕刪除
     button.disabled = True
     button.view.remove_item(button)
     await interaction.response.edit_message(content="Hello world", view=button.view)
@@ -45,10 +46,7 @@ class Output(Cog_Extension):
   
 
   @commands.command()
-  async def output(self, ctx, *, msg):
-
-    #Eng_output, Che_output = "abc", "你好"  #侑哲函式回傳
-
+  async def search(self, ctx, *, msg):
     
     Eng_output, Che_output = self.LLMAgent.ask_question(msg)
 
@@ -56,22 +54,9 @@ class Output(Cog_Extension):
 
     view = Translate_Button(Eng_output, Che_output, judge)
 
-
     await ctx.send(view = view, content = Eng_output)
 
-    
-
-  '''@commands.command()
-  async def btest(self, ctx):
-
-    await ctx.send('btest')
-
-    view = Translate_Button()
-
-    await ctx.send(view)
-
-    Eng_output, Che_output = "abc", "你好"  #侑哲函式回傳'''
-
+  
 
 async def setup(bot):
   await bot.add_cog(Output(bot))

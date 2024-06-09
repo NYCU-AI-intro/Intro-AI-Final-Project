@@ -1,15 +1,12 @@
 import discord
 from discord.ext import commands
 import time
-import random
 import json
 
 with open('json/setting.json', 'r', encoding='utf8') as jfile:
   jdata = json.load(jfile)
 with open('json/help.json', 'r', encoding='utf8') as hfile:
   hdata = json.load(hfile)
-
-
 
 
 class Main(commands.Cog): # 繼承commands.Cog
@@ -29,19 +26,6 @@ class Main(commands.Cog): # 繼承commands.Cog
   async def ping(self, ctx):
     pin = round(1000 * self.bot.latency)
     await ctx.send(f'現在的延遲是{pin}ms左右')
-
-# 複讀訊息
-
-  @commands.command()
-  async def sayd(self, ctx, *, msg):
-    name = ctx.author
-    if str(name) == 'qoopercy':
-      await ctx.message.delete()
-      await ctx.send(msg)
-    else:
-      gsm = msg[::-1]
-      await ctx.message.delete()
-      await ctx.send(gsm)
 
 # reload
 
@@ -96,7 +80,6 @@ class Main(commands.Cog): # 繼承commands.Cog
     else:
       await ctx.send(ctx.author)
 
-
 # 檔案位置
 
   @commands.command()
@@ -104,18 +87,12 @@ class Main(commands.Cog): # 繼承commands.Cog
       await ctx.send("https://replit.com/@percytsaics12/Discord-LLM-Read-Paper-Bot")
 
 
-    
 # help
 
   @commands.command()
   async def help(self, ctx):
-    await ctx.send("詳細使用方法在 <#1238805870112931841>")
-    
-# 高級help
-  @commands.command()
-  async def Help(self, ctx):
     help_des = hdata["help_des"]
-    await ctx.channel.purge(limit = 1) #清除
+    await ctx.channel.purge(limit = 1) 
     await ctx.send(help_des)
 
 
