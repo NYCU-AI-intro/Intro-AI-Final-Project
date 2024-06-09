@@ -1,0 +1,17 @@
+Name:
+A Survey of Route Recommendations: Methods, Applications, and Opportunities
+Summery:
+The paper reviews route recommendation research within urban computing, focusing on smart and efficient travel routes influenced by big data and advanced computational resources. It categorizes classical and modern deep learning methods, discussing their historical development and recent advancements. The survey also presents various novel applications in urban scenarios and addresses current challenges in the field. Future research directions are outlined to guide researchers. This work aims to familiarize researchers with the current state of route recommendation research and highlight emerging trends.
+Domain Tag:
+Urban Computing, Route Recommendation, Spatio-Temporal Learning, Deep Learning
+Link: 
+https://arxiv.org/abs/2403.00284
+
+名稱：
+路徑推薦研究概述：方法、應用和機遇
+摘要：
+本文概述了城市計算中的路徑推薦研究，重點關注受大數據和先進計算資源影響的智慧、高效出行路徑。它將傳統和現代深度學習方法進行了分類，討論了它們的歷史發展和最新進展。該調查還介紹了城市場景中的各種新型應用，並討論了該領域的當前挑戰。未來的研究方向被概述，以指導研究人員。本工作旨在使研究人員熟悉當前路徑推薦研究的現狀，並突出新興趨勢。
+領域標籤：
+城市計算、路徑推薦、時空學習、深度學習
+連結：
+https://arxiv.org/abs/2403.00284
