@@ -1,4 +1,3 @@
-import os
 from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
@@ -27,7 +26,7 @@ class Agent:
         print('split text')
         start = time()
         # text_splitter to split the document to adjust to the input limit of LLM
-        text_splitter = CharacterTextSplitter(chunk_size=100, chunk_overlap=0)
+        text_splitter = CharacterTextSplitter(chunk_size=300, chunk_overlap=0)
         splited_docs = text_splitter.split_documents(documents) # type: list{Document}, which means split n document, n = all tokens/100
         end = time()
         print('time: ', end - start)
@@ -39,7 +38,7 @@ class Agent:
         # store vector in Chroma vector database
         self.db = Chroma.from_documents(splited_docs, embeddings) # type: db
         print('build agent')
-        self.qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(model_name='gpt-3.5-turbo'), chain_type="map_rerank", retriever=self.db.as_retriever(), return_source_documents=True)
+        self.qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(model_name='gpt-3.5-turbo'), chain_type="map_reduce", retriever=self.db.as_retriever(), return_source_documents=True)
         end = time()
         print('time: ', end - start)
         print('init end')

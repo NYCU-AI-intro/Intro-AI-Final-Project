@@ -4,7 +4,7 @@ Name:
 Summery:
     summary of paper
 Domain Tag:
-    related tag of paper
+    tag1, tag2
 Link: 
     https://arxiv.org/abs/2403.00284
 ----------
