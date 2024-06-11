@@ -38,7 +38,10 @@ class Agent:
         # store vector in Chroma vector database
         self.db = Chroma.from_documents(splited_docs, embeddings) # type: db
         print('build agent')
-        self.qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(model_name='gpt-3.5-turbo'), chain_type="map_reduce", retriever=self.db.as_retriever(), return_source_documents=True)
+        # RetrievalQA: an QA system which can retrieval information from database
+        self.qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(model_name='gpt-3.5-turbo'), 
+                                              chain_type="map_reduce", retriever=self.db.as_retriever(),
+                                              return_source_documents=True)
         end = time()
         print('time: ', end - start)
         print('init end')
@@ -49,7 +52,6 @@ class Agent:
         response = openai.OpenAI().chat.completions.create(
             model=model,
             messages=[
-                #{"role": "system", "content": "You are a prefessional assistant help people to find paper."},
                 {"role": "user", "content": prompt},
             ]
         )
@@ -58,8 +60,6 @@ class Agent:
         print('ask_without_db end')
         return response.choices[0].message.content
         
-
-# RetrievalQA: an QA system which can retrieval information from database
     def ask_question(self, prompt):
         
         print('ask_question start')

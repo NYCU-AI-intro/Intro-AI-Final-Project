@@ -1,8 +1,10 @@
-# Intro-AI-Final-Project
+# LLM輔助論文檢索與綜整
 
 ## Overview
 
 使用selenium做爬蟲抓取arXiv的資料，接著使用langchain與OpenAI api建置以爬蟲資料為資料庫的RAG LLM與一般的LLM，並且使用discord bot做互動
+
+可以對於discord bot發指令，讓bot從資料庫或是過去的訓練資料中，查找相關的論文。
 
 ## 環境
 
